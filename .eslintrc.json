@@ -19,7 +19,9 @@
     "globals": {
       "WEAVY_URL": "readonly",
       "WEAVY_SOURCE_NAME": "readonly",
-      "WEAVY_VERSION": "readonly"
+      "WEAVY_VERSION": "readonly",
+      "WEAVY_CONFLUENCE_AUTH_URL": "readonly",
+      "WEAVY_CONFLUENCE_PRODUCT_NAME": "readonly"
     },
     "rules": {
       "no-prototype-builtins": "off",

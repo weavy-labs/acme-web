@@ -108,6 +108,7 @@ class AcmeAppbar extends LitElement {
               </button>
               <div class="dropdown-menu dropdown-menu-end py-0">
                 <button class="dropdown-item ${!this.locale || this.locale === "en" ? "active" : ""}" data-locale="en" @click=${this.handleLocaleClick}>English (en)</button>
+                <button class="dropdown-item ${this.locale === "sv-SE" ? "active" : ""}" data-locale="sv-SE" @click=${this.handleLocaleClick}>Swedish (sv-SE)</button>
                 <button class="dropdown-item ${this.locale === "xx-pirate" ? "active" : ""}" data-locale="xx-pirate" @click=${this.handleLocaleClick}>Pirate (xx-pirate)</button>
               </div>
             </div>

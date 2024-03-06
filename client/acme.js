@@ -16,9 +16,13 @@ const tokenFactory = async (refresh) => {
 const weavy = new Weavy();
 
 weavy.url = WEAVY_URL,
+weavy.confluenceAuthenticationUrl = WEAVY_CONFLUENCE_AUTH_URL;
+weavy.confluenceProductName = WEAVY_CONFLUENCE_PRODUCT_NAME;
 weavy.tokenFactory = tokenFactory;
 
-weavy.locales = ["xx-pirate"];
+weavy.locales = [
+  ["xx-pirate", () => import("./locales/xx-pirate.js")]
+];
 
 document.addEventListener("locale", (e) => {
   weavy.locale = e.detail.locale;

@@ -5,16 +5,18 @@
 import "dotenv/config";
 import { startDevServer } from "@web/dev-server";
 import { esbuildPlugin } from "@web/dev-server-esbuild";
+//import { importMapsPlugin } from "@web/dev-server-import-maps";
+
 import koaMiddleware from "./koa-middleware.mjs";
 
-const WEB_HOSTNAME = process.env.HOSTNAME || 'localhost';
+const WEB_HOSTNAME = process.env.HOSTNAME || "localhost";
 const WEB_PORT = parseInt(process.env.PORT) || 3000;
-const HTTPS = process.env.HTTPS !== false && process.env.HTTPS !== 'false';
+const HTTPS = process.env.HTTPS !== false && process.env.HTTPS !== "false";
 
 const DEBUG = process.env.DEBUG || false;
 
 if (!process.env.WEAVY_URL) {
-    throw new Error('No WEAVY_URL defined in .env')
+  throw new Error("No WEAVY_URL defined in .env");
 }
 
 async function main() {
@@ -28,6 +30,17 @@ async function main() {
       hostname: WEB_HOSTNAME,
       port: WEB_PORT,
       plugins: [
+        /*importMapsPlugin({
+          inject: {
+            include: "/*.html",
+            importMap: {
+              imports: {
+                "react": "https://esm.sh/react@18.2.0",
+                "react-dom": "https://esm.sh/react-dom@18.2.0"
+              },
+            },
+          },
+        }),*/
         esbuildPlugin({
           js: true,
           ts: true,
@@ -39,7 +52,9 @@ async function main() {
             if (context.response.is("html")) {
               let html = context.body;
               html = html.replace("{WEAVY_URL}", process.env.WEAVY_URL);
-              html = html.replace("{ZOOM_AUTH_URL}", process.env.ZOOM_AUTH_URL);
+              html = html.replace("{WEAVY_ZOOM_AUTH_URL}", process.env.WEAVY_ZOOM_AUTH_URL);
+              html = html.replace("{WEAVY_CONFLUENCE_AUTH_URL}", process.env.WEAVY_CONFLUENCE_AUTH_URL);
+              html = html.replace("{WEAVY_CONFLUENCE_PRODUCT_NAME}", process.env.WEAVY_CONFLUENCE_PRODUCT_NAME);
               return { body: html, transformCache: false };
             }
           },
@@ -47,7 +62,7 @@ async function main() {
       ],
       http2: HTTPS,
       sslKey: process.env.HTTPS_PEM_KEY_PATH,
-      sslCert: process.env.HTTPS_PEM_CERT_PATH
+      sslCert: process.env.HTTPS_PEM_CERT_PATH,
     },
     readFileConfig: false,
   });
