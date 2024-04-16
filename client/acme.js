@@ -32,3 +32,6 @@ const storedLocale = localStorage.getItem("locale");
 if (storedLocale) {
   weavy.locale = storedLocale;
 }
+
+// eslint-disable-next-line no-undef
+globalThis.weavy = weavy;
