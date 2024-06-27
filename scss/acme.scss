@@ -263,7 +263,13 @@ main {
 }
 
 .contextual-app {
+  display: flex;
+  flex-direction: column;
   height: calc(100vh - #{$navbar-height});
+}
+
+.contextual-app-padded > * {
+  padding: .75rem;
 }
 
 h1.http {

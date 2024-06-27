@@ -24,7 +24,7 @@ class AcmeMessageApi extends LitElement {
   }
 
   async firstUpdated() {
-    const response = await fetch("/api/contextual/acme-chat-message-api-2?type=chat");
+    const response = await fetch("/api/contextual/acme-chat-message-api?type=chat");
     const json = await response.json();
     this.appId = json.id;
   }
@@ -81,7 +81,7 @@ class AcmeMessageApi extends LitElement {
         </div>
       </div>
       <div class="contextual-app w-50 border-start">
-        <wy-chat uid="acme-chat-message-api-2"></wy-chat>
+        <wy-chat uid="acme-chat-message-api"></wy-chat>
       </div>
     </div>`;
   }

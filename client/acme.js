@@ -2,6 +2,8 @@ import "bootstrap";
 import { Weavy } from "@weavy/uikit-web";
 export * as default from "./components/acme-layout.js";
 
+console.log("Configuring weavy...")
+
 const tokenFactory = async (refresh) => {
   let response = await fetch(`/api/token${refresh ? "?refresh=true" : ""}`);
 
@@ -15,9 +17,13 @@ const tokenFactory = async (refresh) => {
 
 const weavy = new Weavy();
 
-weavy.url = WEAVY_URL,
-weavy.confluenceAuthenticationUrl = WEAVY_CONFLUENCE_AUTH_URL;
-weavy.confluenceProductName = WEAVY_CONFLUENCE_PRODUCT_NAME;
+weavy.url = WEAVY_URL;
+
+try {
+  weavy.confluenceAuthenticationUrl = WEAVY_CONFLUENCE_AUTH_URL;
+  weavy.confluenceProductName = WEAVY_CONFLUENCE_PRODUCT_NAME;
+} catch(e) { /* No worries */}
+
 weavy.tokenFactory = tokenFactory;
 
 weavy.locales = [
@@ -35,3 +41,5 @@ if (storedLocale) {
 
 // eslint-disable-next-line no-undef
 globalThis.weavy = weavy;
+
+console.log("Weavy configured");
