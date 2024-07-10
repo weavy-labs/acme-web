@@ -3,13 +3,14 @@ import { LitElement, html, css } from "lit";
 import { io } from "https://cdn.socket.io/4.5.4/socket.io.esm.min.js";
 
 import "@weavy/uikit-web";
+import { ConversationTypes } from "@weavy/uikit-web";
 import "./acme-appbar.js";
 import "./acme-aside.js";
 import "./acme-messenger";
 import "./acme-message-api";
 import "./acme-users";
-import './acme-profile'
-import './acme-notification-history'
+import "./acme-profile";
+import "./acme-notification-history";
 
 class AcmeLayout extends LitElement {
   static styles = css`
@@ -72,11 +73,27 @@ class AcmeLayout extends LitElement {
       <acme-appbar
         .socket=${this.socket}
         .user=${this.user}
-        @messenger-toggle=${(e) => this.toggleMessenger(e.detail.open)}
-        ></acme-appbar>
+        @messenger-toggle=${(e) => this.toggleMessenger(e.detail.open)}></acme-appbar>
       <slot></slot>
       <acme-aside></acme-aside>
       <acme-messenger .isOpen=${this.messengerIsOpen}></acme-messenger>
+      <wy-notification-toasts
+        @wy:link=${(e) => {
+          console.log("opening wy:link", e.detail, ConversationTypes);
+          const appType = e.detail.app.type;
+          const appUid = e.detail.app.uid;
+          const contextualPrefix = "acme-";
+
+          if (ConversationTypes.has(appType)) {
+            this.messengerIsOpen = true;
+          } else if (appUid && appUid.startsWith(contextualPrefix)) {
+            const pageName = appUid.substring(contextualPrefix.length);
+            const linkUrl = new URL(`./${pageName}.html`, window.location);
+            if (window.location.href !== linkUrl.href) {
+              window.location = linkUrl;
+            }
+          }
+        }}></wy-notification-toasts>
     `;
   }
 

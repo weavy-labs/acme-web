@@ -34,7 +34,7 @@ class AcmeAside extends LitElement {
 
                         <h6 class="sidebar-heading px-3 mt-3 mb-1 text-muted text-uppercase">Examples</h6>
 
-                        <a class="nav-link" href="/examples-api.html">
+                        <a class="nav-link" href="/chat-message-api.html">
                             <span data-feather="message-square"></span> Message API</a
                         >
                     </nav>

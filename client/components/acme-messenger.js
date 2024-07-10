@@ -1,32 +1,34 @@
-import { LitElement, html, css } from 'lit'
-import "@weavy/uikit-web"
+import { LitElement, html, css } from "lit";
+import "@weavy/uikit-web";
 
 class AcmeMessenger extends LitElement {
-    static styles = css`
-        :host {
-            display: contents;
-        }
-    `
-
-    static properties = {
-        isOpen: { type: Boolean },
+  static styles = css`
+    :host {
+      display: contents;
     }
+  `;
 
-    constructor() {
-        super()
-        this.isOpen = false
-    }
+  static properties = {
+    isOpen: { type: Boolean },
+  };
 
-    createRenderRoot() {
-        return this
-    }
+  constructor() {
+    super();
+    this.isOpen = false;
+  }
 
-    render() {
-        return html`
-            <div id="messenger" class="offcanvas-end-custom settings-panel border-0 border-start ${this.isOpen ? 'show' : ''}">
-                <wy-messenger></wy-messenger>
-            </div>
-        `
-    }
+  createRenderRoot() {
+    return this;
+  }
+
+  render() {
+    return html`
+      <div
+        id="messenger"
+        class="offcanvas-end-custom settings-panel border-0 border-start ${this.isOpen ? "show" : ""}">
+        <wy-messenger></wy-messenger>
+      </div>
+    `;
+  }
 }
-customElements.define('acme-messenger', AcmeMessenger)
+customElements.define("acme-messenger", AcmeMessenger);
