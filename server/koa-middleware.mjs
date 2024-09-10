@@ -4,7 +4,7 @@
 
 import "dotenv/config";
 import session from "koa-session";
-import koaRouter from "koa-router";
+import koaRouter from "@koa/router";
 import userAuth from "koa-userauth";
 import { koaBody } from "koa-body";
 import koaSocketIO from "koa-socket-2";
@@ -21,7 +21,7 @@ import {
   sendMessage,
 } from "./web-api.mjs";
 
-const router = koaRouter();
+const router = new koaRouter();
 let koaIO;
 
 export const getUid = (username) => {
