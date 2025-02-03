@@ -11,7 +11,6 @@ import koaSocketIO from "koa-socket-2";
 import { initDb, getUser, getUsers, updateUser } from "./db.mjs";
 
 import {
-  initApp,
   syncUser,
   getUserToken,
   getNotifications,
@@ -59,16 +58,6 @@ router.get("/api/token", async (ctx) => {
   const uid = ctx.session.uid; // get user from session
   const refresh = ctx.query.refresh && ctx.query.refresh !== "false";
   ctx.body = await getUserToken({ uid, refresh });
-});
-
-router.get("/api/contextual/:id", async (ctx) => {
-  // setup contextual app
-  ctx.body = await initApp({
-    uid: ctx.request.params.id,
-    name: ctx.request.params.id,
-    type: ctx.query.type,
-    userId: ctx.session.uid,
-  });
 });
 
 router.post("/api/examples/messages", async (ctx) => {

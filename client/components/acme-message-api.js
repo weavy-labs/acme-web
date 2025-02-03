@@ -11,22 +11,18 @@ class AcmeMessageApi extends LitElement {
   inputRef = createRef();
 
   static properties = {
-    appId: { type: Number },
+    appId: { type: String },
     result: { state: true },
   };
 
   constructor() {
     super();
+
+    this.appId = "acme-chat-message-api";
   }
 
   createRenderRoot() {
     return this;
-  }
-
-  async firstUpdated() {
-    const response = await fetch("/api/contextual/acme-chat-message-api?type=chat");
-    const json = await response.json();
-    this.appId = json.id;
   }
 
   async handleSubmit() {

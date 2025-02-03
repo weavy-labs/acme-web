@@ -23,7 +23,7 @@ class AcmeMessengerButton extends LitElement {
         return html`
             <a class="btn btn-icon" href="#" role="button" @click=${this.dispatchToggleMessenger}>
                 <span data-feather="message-square"></span>
-                <wy-badge class="messenger-badge"></wy-badge>
+                <wy-messenger-badge class="messenger-badge"></wy-messenger-badge>
             </a>
         `
     }

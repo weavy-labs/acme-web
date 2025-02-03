@@ -3,7 +3,7 @@ import { LitElement, html, css } from "lit";
 import { io } from "https://cdn.socket.io/4.5.4/socket.io.esm.min.js";
 
 import "@weavy/uikit-web";
-import { ConversationTypes } from "@weavy/uikit-web";
+import { MessengerTypes } from "@weavy/uikit-web";
 import "./acme-appbar.js";
 import "./acme-aside.js";
 import "./acme-messenger";
@@ -78,13 +78,13 @@ class AcmeLayout extends LitElement {
       <acme-aside></acme-aside>
       <acme-messenger .isOpen=${this.messengerIsOpen}></acme-messenger>
       <wy-notification-toasts
-        @wy:link=${(e) => {
-          console.log("opening wy:link", e.detail, ConversationTypes);
-          const appType = e.detail.app.type;
-          const appUid = e.detail.app.uid;
+        @wy-link=${(e) => {
+          console.log("opening wy-link", e.detail, MessengerTypes);
+          const appType = e.detail.link.app.type;
+          const appUid = e.detail.link.app.uid;
           const contextualPrefix = "acme-";
 
-          if (ConversationTypes.has(appType)) {
+          if (MessengerTypes.has(appType)) {
             this.messengerIsOpen = true;
           } else if (appUid && appUid.startsWith(contextualPrefix)) {
             const pageName = appUid.substring(contextualPrefix.length);
@@ -92,6 +92,8 @@ class AcmeLayout extends LitElement {
             if (window.location.href !== linkUrl.href) {
               window.location = linkUrl;
             }
+          } else if(e.detail.source_url) {
+           window.open(e.detail.source_url, "_blank");
           }
         }}></wy-notification-toasts>
     `;

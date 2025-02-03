@@ -53,8 +53,6 @@ async function main() {
               let html = context.body;
               html = html.replace("{WEAVY_URL}", process.env.WEAVY_URL);
               html = html.replace("{WEAVY_ZOOM_AUTH_URL}", process.env.WEAVY_ZOOM_AUTH_URL);
-              html = html.replace("{WEAVY_CONFLUENCE_AUTH_URL}", process.env.WEAVY_CONFLUENCE_AUTH_URL);
-              html = html.replace("{WEAVY_CONFLUENCE_PRODUCT_NAME}", process.env.WEAVY_CONFLUENCE_PRODUCT_NAME);
               return { body: html, transformCache: false };
             }
           },

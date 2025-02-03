@@ -19,11 +19,6 @@ const weavy = new Weavy();
 
 weavy.url = WEAVY_URL;
 
-try {
-  weavy.confluenceAuthenticationUrl = WEAVY_CONFLUENCE_AUTH_URL;
-  weavy.confluenceProductName = WEAVY_CONFLUENCE_PRODUCT_NAME;
-} catch(e) { /* No worries */}
-
 weavy.tokenFactory = tokenFactory;
 
 weavy.locales = [

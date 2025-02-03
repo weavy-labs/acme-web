@@ -35,28 +35,6 @@ export const syncUser = async (user) => {
   return await response.json();
 };
 
-export const initApp = async ({ uid, name, type, userId }) => {
-  if (type !== "messenger") {
-    const app = { uid: uid, name: name, type: type };
-    const user = { uid: `${userId}` };
-
-    const response = await fetch(new URL(`/api/apps/init`, weavyUrl), {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        Authorization: `Bearer ${apiKey}`,
-      },
-      body: JSON.stringify({ app: app, user: user }),
-    });
-
-    if (!response.ok) {
-      throw new Error("Error fetching app", { cause: response });
-    }
-
-    return await response.json();
-  }
-};
-
 export const getUserToken = async ({ uid, refresh = false }) => {
     // Check if token already is in cache and no fresh token is needed
   if (!refresh && tokens.has(uid)) {
