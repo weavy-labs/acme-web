@@ -200,7 +200,7 @@
         <target state="">Expand territory</target>
       </trans-unit>
       <trans-unit id="s6e68e284db76e5b4">
-        <source>Seen by <x id="0" equiv-text="${member.display_name}"/> at <x id="1" equiv-text="${dateSeenFull}"/></source>
+        <source>Seen by <x id="0" equiv-text="${member.name}"/> at <x id="1" equiv-text="${dateSeenFull}"/></source>
         <target state=""><x id="0" equiv-text="${member.display_name}"/> diary, anno <x id="1" equiv-text="${dateSeenFull}"/></target>
       </trans-unit>
       <trans-unit id="sd3b60ec2f9fb421b">
@@ -695,6 +695,14 @@
     <trans-unit id="s7c23790a4d2b3420">
       <source>You are not subscribed to updates yet.</source>
       <target>Ye be sailing with Davy Jones' locker.</target>
+    </trans-unit>
+    <trans-unit id="sa6b88405214f8c17">
+      <source>Error uploading context data.</source>
+      <target>Yer ship was sunk by the fearsome Captain Blackbeard.</target>
+    </trans-unit>
+    <trans-unit id="s19bee21a859fbea0">
+      <source>Leave</source>
+      <target>Retreat!</target>
     </trans-unit>
     </body>
   </file>
