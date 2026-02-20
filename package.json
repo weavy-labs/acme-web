@@ -1,6 +1,6 @@
 {
   "name": "acme-web",
-  "version": "30.3.2",
+  "version": "30.4.0",
   "author": "Weavy",
   "description": "",
   "main": "client/index.js",
@@ -16,7 +16,7 @@
   "license": "MIT",
   "dependencies": {
     "@popperjs/core": "^2.11.8",
-    "@weavy/uikit-web": "^30.3.2",
+    "@weavy/uikit-web": "^30.4.0",
     "bootstrap": "^5.3.8",
     "lit": "^3.3.2",
     "socket.io-client": "^4.8.3"
